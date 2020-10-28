@@ -1,0 +1,173 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/></edmx:Reference>
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="C_STOCKQUANTITYVALUEBYTYPE_CDS" xml:lang="pt" sap:schema-version="1">
+			<EntityType Name="C_STOCKQUANTITYVALUEBYTYPEType" sap:label="Quantidade em estoque e valor por tipo" sap:semantics="aggregate"
+				sap:content-version="1">
+				<Key><PropertyRef Name="ID"/></Key><Property Name="ID" Type="Edm.String" Nullable="false" sap:filterable="false" sap:updatable="false" sap:sortable="false"/><Property Name="TotaledProperties" Type="Edm.String" sap:aggregation-role="totaled-properties-list" sap:is-annotation="true"
+					sap:updatable="false" sap:sortable="false"/><Property Name="Material" Type="Edm.String" MaxLength="40" sap:aggregation-role="dimension" sap:creatable="false" sap:updatable="false"
+					sap:label="Material estoque" sap:value-list="standard"/><Property Name="MaterialGroup" Type="Edm.String" MaxLength="9" sap:attribute-for="Material" sap:filterable="false" sap:updatable="false"
+					sap:label="Grupo de mercadorias"/><Property Name="MaterialType" Type="Edm.String" MaxLength="4" sap:attribute-for="Material" sap:filterable="false" sap:updatable="false"
+					sap:label="Tipo de material"/><Property Name="InventorySpecialStockType" Type="Edm.String" MaxLength="1" sap:aggregation-role="dimension" sap:creatable="false"
+					sap:text="InventorySpecialStockTypeName" sap:updatable="false" sap:label="Tipo de estoque especial" sap:value-list="standard"/><Property Name="InventorySpecialStockTypeName" Type="Edm.String" MaxLength="1333" sap:creatable="false" sap:filterable="false"
+					sap:updatable="false" sap:label="Tipo de estoque especial ()"/><Property Name="InventoryStockType" Type="Edm.String" MaxLength="2" sap:aggregation-role="dimension" sap:creatable="false"
+					sap:text="InventoryStockTypeName" sap:updatable="false" sap:label="Tipo de estoque" sap:value-list="standard"/><Property Name="InventoryStockTypeName" Type="Edm.String" MaxLength="1333" sap:creatable="false" sap:filterable="false"
+					sap:updatable="false" sap:label="Tipo de estoque ()"/><Property Name="Plant" Type="Edm.String" MaxLength="4" sap:aggregation-role="dimension" sap:creatable="false"
+					sap:filter-restriction="single-value" sap:required-in-filter="true" sap:text="PlantName" sap:updatable="false" sap:label="Centro"/><Property Name="PlantName" Type="Edm.String" MaxLength="1333" sap:creatable="false" sap:filterable="false" sap:updatable="false"
+					sap:label="Centro ()"/><Property Name="Currency" Type="Edm.String" MaxLength="5" sap:aggregation-role="dimension" sap:creatable="false" sap:updatable="false"
+					sap:label="Moeda" sap:value-list="standard" sap:semantics="currency-code"/><Property Name="StorageLocation" Type="Edm.String" MaxLength="4" sap:aggregation-role="dimension" sap:creatable="false"
+					sap:super-ordinate="Plant" sap:updatable="false" sap:label="Depósito" sap:value-list="standard"/><Property Name="MaterialBaseUnit" Type="Edm.String" MaxLength="3" sap:aggregation-role="dimension" sap:creatable="false"
+					sap:updatable="false" sap:label="Unid.medida básica" sap:value-list="standard" sap:semantics="unit-of-measure"/><Property Name="MatlWrhsStkQtyInMatlBaseUnit" Type="Edm.Decimal" Precision="42" Scale="3" sap:aggregation-role="measure"
+					sap:creatable="false" sap:filterable="false" sap:text="MatlWrhsStkQtyInMatlBaseUnit_F" sap:unit="MaterialBaseUnit" sap:updatable="false"
+					sap:label="Estoque do material"/><Property Name="MatlWrhsStkQtyInMatlBaseUnit_F" Type="Edm.String" MaxLength="60" sap:creatable="false" sap:filterable="false"
+					sap:updatable="false" sap:label="Estoque do material (Formatado)"/><Property Name="StockValueInCCCrcy" Type="Edm.Decimal" Precision="42" Scale="2" sap:aggregation-role="measure" sap:creatable="false"
+					sap:filterable="false" sap:text="StockValueInCCCrcy_F" sap:unit="Currency" sap:updatable="false" sap:label="Valor do estoque"/><Property Name="StockValueInCCCrcy_F" Type="Edm.String" MaxLength="60" sap:creatable="false" sap:filterable="false" sap:updatable="false"
+					sap:label="Valor do estoque (Formatado)"/><NavigationProperty Name="PlantDetails" Relationship="C_STOCKQUANTITYVALUEBYTYPE_CDS.PlantToListOfValues"
+					FromRole="ToRole_PlantToListOfValues" ToRole="FromRole_PlantToListOfValues"/></EntityType>
+			<EntityType Name="Plant" sap:content-version="1">
+				<Key><PropertyRef Name="Plant"/></Key><Property Name="Plant" Type="Edm.String" Nullable="false" sap:parameter="optional" sap:text="PlantText" sap:label="Centro"
+					sap:sortable="false" sap:value-list="standard"/><Property Name="PlantText" Type="Edm.String" MaxLength="60" sap:label="Centro (Description) " sap:sortable="false"/></EntityType>
+			<EntityType Name="Material" sap:label="Material estoque (Master Data)" sap:value-list="true" sap:content-version="1">
+				<Key><PropertyRef Name="Material_ID"/></Key><Property Name="Material_ID" Type="Edm.String" Nullable="false" MaxLength="40" sap:text="MaterialText" sap:label="Material estoque"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false"/><Property Name="MaterialText" Type="Edm.String" sap:label="Material estoque (Description)" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="MaterialGroup" Type="Edm.String" sap:label="Grupo de mercadorias" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false"/><Property Name="MaterialType" Type="Edm.String" sap:label="Tipo de material" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false"/></EntityType>
+			<EntityType Name="InventorySpecialStockType" sap:label="Tipo de estoque especial (Master Data)" sap:value-list="true"
+				sap:content-version="1">
+				<Key><PropertyRef Name="InventorySpecialStockType_ID"/></Key><Property Name="InventorySpecialStockType_ID" Type="Edm.String" Nullable="false" MaxLength="1" sap:text="InventorySpecialStockTypeText"
+					sap:label="Tipo de estoque especial" sap:creatable="false" sap:updatable="false" sap:sortable="false"/><Property Name="InventorySpecialStockTypeText" Type="Edm.String" sap:label="Tipo de estoque especial (Description)" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="InventoryStockType" sap:label="Tipo de estoque (Master Data)" sap:value-list="true" sap:content-version="1">
+				<Key><PropertyRef Name="InventoryStockType_ID"/></Key><Property Name="InventoryStockType_ID" Type="Edm.String" Nullable="false" MaxLength="2" sap:text="InventoryStockTypeText"
+					sap:label="Tipo de estoque" sap:creatable="false" sap:updatable="false" sap:sortable="false"/><Property Name="InventoryStockTypeText" Type="Edm.String" sap:label="Tipo de estoque (Description)" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="Currency" sap:label="Moeda (Master Data)" sap:value-list="true" sap:content-version="1">
+				<Key><PropertyRef Name="Currency_ID"/></Key><Property Name="Currency_ID" Type="Edm.String" Nullable="false" MaxLength="5" sap:text="CurrencyText" sap:label="Moeda"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false"/><Property Name="CurrencyText" Type="Edm.String" sap:label="Moeda (Description)" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="StorageLocation" sap:label="Depósito (Master Data)" sap:value-list="true" sap:content-version="1">
+				<Key><PropertyRef Name="StorageLocation_ID"/><PropertyRef Name="Plant"/></Key><Property Name="StorageLocation_ID" Type="Edm.String" Nullable="false" MaxLength="4" sap:super-ordinate="Plant"
+					sap:text="StorageLocationText" sap:label="Depósito" sap:creatable="false" sap:updatable="false" sap:sortable="false"/><Property Name="StorageLocationText" Type="Edm.String" sap:label="Depósito (Description)" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Plant" Type="Edm.String" Nullable="false" sap:label="Depósito (Plant)" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false"/><Property Name="PlantName" Type="Edm.String" sap:label="Centro () (Parent Description)" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="MaterialBaseUnit" sap:label="Unid.medida básica (Master Data)" sap:value-list="true" sap:content-version="1">
+				<Key><PropertyRef Name="MaterialBaseUnit_ID"/></Key><Property Name="MaterialBaseUnit_ID" Type="Edm.String" Nullable="false" MaxLength="3" sap:text="MaterialBaseUnitText"
+					sap:label="Unid.medida básica" sap:creatable="false" sap:updatable="false" sap:sortable="false"/><Property Name="MaterialBaseUnitText" Type="Edm.String" sap:label="Unid.medida básica (Description)" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="ODataQueryAdditionalMetadata" sap:content-version="1">
+				<Key><PropertyRef Name="ODataQueryMetadata"/></Key><Property Name="ODataQueryMetadata" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="ODataQueryMetadataValue_Current" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="ODataQueryMetadataValueAtDefine" Type="Edm.String" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/></EntityType>
+			<Association Name="PlantToListOfValues" sap:content-version="1"><End Type="C_STOCKQUANTITYVALUEBYTYPE_CDS.Plant" Multiplicity="1" Role="FromRole_PlantToListOfValues"/><End Type="C_STOCKQUANTITYVALUEBYTYPE_CDS.C_STOCKQUANTITYVALUEBYTYPEType" Multiplicity="*" Role="ToRole_PlantToListOfValues"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_PlantToListOfValues"><PropertyRef Name="Plant"/></Principal>
+					<Dependent Role="ToRole_PlantToListOfValues"><PropertyRef Name="Plant"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<EntityContainer Name="C_STOCKQUANTITYVALUEBYTYPE_CDS_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx"><EntitySet Name="Material" EntityType="C_STOCKQUANTITYVALUEBYTYPE_CDS.Material" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:content-version="1"/><EntitySet Name="InventorySpecialStockType" EntityType="C_STOCKQUANTITYVALUEBYTYPE_CDS.InventorySpecialStockType" sap:creatable="false"
+				sap:updatable="false" sap:deletable="false" sap:content-version="1"/><EntitySet Name="InventoryStockType" EntityType="C_STOCKQUANTITYVALUEBYTYPE_CDS.InventoryStockType" sap:creatable="false"
+				sap:updatable="false" sap:deletable="false" sap:content-version="1"/><EntitySet Name="Currency" EntityType="C_STOCKQUANTITYVALUEBYTYPE_CDS.Currency" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:content-version="1"/><EntitySet Name="StorageLocation" EntityType="C_STOCKQUANTITYVALUEBYTYPE_CDS.StorageLocation" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:content-version="1"/><EntitySet Name="MaterialBaseUnit" EntityType="C_STOCKQUANTITYVALUEBYTYPE_CDS.MaterialBaseUnit" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:content-version="1"/><EntitySet Name="AdditionalMetadata" EntityType="C_STOCKQUANTITYVALUEBYTYPE_CDS.ODataQueryAdditionalMetadata" sap:creatable="false"
+				sap:updatable="false" sap:deletable="false" sap:content-version="1"/><EntitySet Name="C_STOCKQUANTITYVALUEBYTYPE" EntityType="C_STOCKQUANTITYVALUEBYTYPE_CDS.C_STOCKQUANTITYVALUEBYTYPEType"
+				sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:requires-filter="true" sap:content-version="1"/><EntitySet Name="Plant" EntityType="C_STOCKQUANTITYVALUEBYTYPE_CDS.Plant" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:content-version="1"/>
+				<AssociationSet Name="PlantToListOfValues_AssocSet" Association="C_STOCKQUANTITYVALUEBYTYPE_CDS.PlantToListOfValues" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="Plant" Role="FromRole_PlantToListOfValues"/><End EntitySet="C_STOCKQUANTITYVALUEBYTYPE" Role="ToRole_PlantToListOfValues"/></AssociationSet>
+			</EntityContainer>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="C_STOCKQUANTITYVALUEBYTYPE_CDS.C_STOCKQUANTITYVALUEBYTYPEType/Plant">
+				<Annotation Term="Common.ValueList">
+					<Record><PropertyValue Property="Label" String="Centro"/><PropertyValue Property="CollectionPath" String="Plant"/><PropertyValue Property="SearchSupported" Bool="false"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut"><PropertyValue Property="LocalDataProperty" PropertyPath="Plant"/><PropertyValue Property="ValueListProperty" String="Plant"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="PlantText"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="C_STOCKQUANTITYVALUEBYTYPE_CDS.C_STOCKQUANTITYVALUEBYTYPEType/Material">
+				<Annotation Term="Common.ValueList">
+					<Record><PropertyValue Property="Label" String="Material estoque ( Master Data )"/><PropertyValue Property="CollectionPath" String="Material"/><PropertyValue Property="SearchSupported" Bool="false"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut"><PropertyValue Property="LocalDataProperty" PropertyPath="Material"/><PropertyValue Property="ValueListProperty" String="Material_ID"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="MaterialType"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="MaterialGroup"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm"
+				Target="C_STOCKQUANTITYVALUEBYTYPE_CDS.C_STOCKQUANTITYVALUEBYTYPEType/InventorySpecialStockType">
+				<Annotation Term="Common.ValueList">
+					<Record><PropertyValue Property="Label" String="Tipo de estoque especial ( Master Data )"/><PropertyValue Property="CollectionPath" String="InventorySpecialStockType"/><PropertyValue Property="SearchSupported" Bool="false"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut"><PropertyValue Property="LocalDataProperty" PropertyPath="InventorySpecialStockType"/><PropertyValue Property="ValueListProperty" String="InventorySpecialStockType_ID"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="InventorySpecialStockTypeText"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm"
+				Target="C_STOCKQUANTITYVALUEBYTYPE_CDS.C_STOCKQUANTITYVALUEBYTYPEType/InventoryStockType">
+				<Annotation Term="Common.ValueList">
+					<Record><PropertyValue Property="Label" String="Tipo de estoque ( Master Data )"/><PropertyValue Property="CollectionPath" String="InventoryStockType"/><PropertyValue Property="SearchSupported" Bool="false"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut"><PropertyValue Property="LocalDataProperty" PropertyPath="InventoryStockType"/><PropertyValue Property="ValueListProperty" String="InventoryStockType_ID"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="InventoryStockTypeText"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="C_STOCKQUANTITYVALUEBYTYPE_CDS.C_STOCKQUANTITYVALUEBYTYPEType/Currency">
+				<Annotation Term="Common.ValueList">
+					<Record><PropertyValue Property="Label" String="Moeda ( Master Data )"/><PropertyValue Property="CollectionPath" String="Currency"/><PropertyValue Property="SearchSupported" Bool="false"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut"><PropertyValue Property="LocalDataProperty" PropertyPath="Currency"/><PropertyValue Property="ValueListProperty" String="Currency_ID"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm"
+				Target="C_STOCKQUANTITYVALUEBYTYPE_CDS.C_STOCKQUANTITYVALUEBYTYPEType/StorageLocation">
+				<Annotation Term="Common.ValueList">
+					<Record><PropertyValue Property="Label" String="Depósito ( Master Data )"/><PropertyValue Property="CollectionPath" String="StorageLocation"/><PropertyValue Property="SearchSupported" Bool="false"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut"><PropertyValue Property="LocalDataProperty" PropertyPath="StorageLocation"/><PropertyValue Property="ValueListProperty" String="StorageLocation_ID"/></Record>
+								<Record Type="Common.ValueListParameterIn"><PropertyValue Property="LocalDataProperty" PropertyPath="Plant"/><PropertyValue Property="ValueListProperty" String="Plant"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm"
+				Target="C_STOCKQUANTITYVALUEBYTYPE_CDS.C_STOCKQUANTITYVALUEBYTYPEType/MaterialBaseUnit">
+				<Annotation Term="Common.ValueList">
+					<Record><PropertyValue Property="Label" String="Unid.medida básica ( Master Data )"/><PropertyValue Property="CollectionPath" String="MaterialBaseUnit"/><PropertyValue Property="SearchSupported" Bool="false"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut"><PropertyValue Property="LocalDataProperty" PropertyPath="MaterialBaseUnit"/><PropertyValue Property="ValueListProperty" String="MaterialBaseUnit_ID"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/C_STOCKQUANTITYVALUEBYTYPE_CDS/$metadata"/><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/C_STOCKQUANTITYVALUEBYTYPE_CDS/$metadata"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

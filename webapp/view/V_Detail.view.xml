@@ -1,0 +1,117 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="namespace.ADD_PACK_E_EXCLUIR_LINHA.controller.V_Detail" displayBlock="true">
+	<Shell id="shell">
+		<App id="app">
+			<pages>
+				<Page id="page" title="{i18n>title}">
+					<Panel expandable="true" expanded="false" headerText="Header Info" width="auto" class="sapUiResponsiveMargin">
+						<content>
+							<sap.ui.layout.form:Form xmlns:sap.ui.layout.form="sap.ui.layout.form" editable="true" id="__form1">
+								<sap.ui.layout.form:formContainers>
+									<sap.ui.layout.form:FormContainer id="__container1">
+										<sap.ui.layout.form:FormElement label="Company Code" id="elementCC">
+											<sap.ui.layout.form:fields>
+												<Input width="50%" id="inputCC"/>
+											</sap.ui.layout.form:fields>
+										</sap.ui.layout.form:FormElement>
+										<sap.ui.layout.form:FormElement label="Plant" id="elementPlant">
+											<sap.ui.layout.form:fields>
+												<Input width="50%" id="inputPlant"/>
+											</sap.ui.layout.form:fields>
+										</sap.ui.layout.form:FormElement>
+									</sap.ui.layout.form:FormContainer>
+								</sap.ui.layout.form:formContainers>
+								<sap.ui.layout.form:layout>
+									<sap.ui.layout.form:ResponsiveGridLayout id="__layout1"/>
+								</sap.ui.layout.form:layout>
+							</sap.ui.layout.form:Form>
+						</content>
+					</Panel>
+					<Panel expandable="true" expanded="false" headerText="Item to be Packed" width="auto" class="sapUiResponsiveMargin">
+						<content>
+							<sap.ui.layout.form:Form xmlns:sap.ui.layout.form="sap.ui.layout.form" editable="true" id="__form2">
+								<sap.ui.layout.form:formContainers>
+									<sap.ui.layout.form:FormContainer id="__container2">
+										<sap.ui.layout.form:formElements>
+											<sap.ui.layout.form:FormElement label="Material Number" id="eleMaterialNo">
+												<sap.ui.layout.form:fields>
+													<Input width="50%" id="inMaterial"/>
+												</sap.ui.layout.form:fields>
+											</sap.ui.layout.form:FormElement>
+											<sap.ui.layout.form:FormElement label="Bath" id="eleBatchNo">
+												<sap.ui.layout.form:fields>
+													<Input width="50%" id="inBath"/>
+												</sap.ui.layout.form:fields>
+											</sap.ui.layout.form:FormElement>
+											<sap.ui.layout.form:FormElement label="Quantity" id="eleQty">
+												<sap.ui.layout.form:fields>
+													<Input width="50%" id="inQty"/>
+												</sap.ui.layout.form:fields>
+											</sap.ui.layout.form:FormElement>
+											<sap.ui.layout.form:FormElement label="UOM" id="eleUOM">
+												<sap.ui.layout.form:fields>
+													<Input width="50%" id="inUOM"/>
+												</sap.ui.layout.form:fields>
+											</sap.ui.layout.form:FormElement>
+										</sap.ui.layout.form:formElements>
+									</sap.ui.layout.form:FormContainer>
+								</sap.ui.layout.form:formContainers>
+								<sap.ui.layout.form:layout>
+									<sap.ui.layout.form:ResponsiveGridLayout id="__layout2"/>
+								</sap.ui.layout.form:layout>
+							</sap.ui.layout.form:Form>
+						</content>
+						<Toolbar height="3rem">
+							<Button icon="sap-icon://add" text="Pack Item" type="Emphasized" press="onAdd"/>
+						</Toolbar>
+					</Panel>
+					<Panel expandable="true" expanded="true" width="auto" class="sapUiResponsiveMargin">
+<headerToolbar>
+<Toolbar height="3rem">
+<Title text="Packed Item"/>
+<ToolbarSpacer/>
+<Button icon="sap-icon://sys-minus" text="Delete Row" type="Reject" press="ondelete"/>
+<Button icon="sap-icon://save" text="Save" type="Accept" press="onSave"/>
+</Toolbar>
+</headerToolbar>						
+						<content>
+							<Table id="packItem" items="{/data}" mode="MultiSelect" growing="true" growingThreshold="4" growingScrollToLoad="false">
+								<items>
+									<ColumnListItem id="itemlist">
+										<cells>
+											<Text text="{Material}" id="Material"/>
+											<Text text="{Bath}" id="Bath"/>
+											<Text text="{Quantity}" id="Quantity"/>
+											<Text text="{Unit}" id="Unit"/>
+										</cells>
+									</ColumnListItem>
+								</items>
+								<columns>
+									<Column id="material">
+										<header>
+											<Label text="Material" id="headMaterial"/>
+										</header>
+									</Column>
+									<Column id="bath">
+										<header>
+											<Label text="Bath" id="_bath"/>
+										</header>
+									</Column>									
+									<Column id="quan">
+										<header>
+											<Label text="Quantity" id="_quan"/>
+										</header>
+									</Column>
+									<Column id="unit">
+										<header>
+											<Label text="Unit" id="_unit"/>
+										</header>
+									</Column>									
+								</columns>
+							</Table>
+						</content>
+					</Panel>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>
